@@ -9,7 +9,7 @@ Created on Fri Dec  2 14:19:13 2022
 with open('input.txt', mode='r') as f:
     data = [tuple(l.strip().split(' ')) for l in f.readlines()]
 
-rps_rules = {'A': ('Z', 'X', 1), 'B': ('X', 'Y', 2), 'C': ('Y', 'Z', 3)}
+# part 1
 
 rps_rules = {
     ('A', 'X'): 1 + 3,    
@@ -26,6 +26,8 @@ rps_rules = {
 results = [rps_rules[m] for m in data]
 
 print(sum(results))
+
+# part 2
 
 rps_rules = {
     ('A', 'X'): 3 + 0,    
