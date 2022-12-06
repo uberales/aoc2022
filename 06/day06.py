@@ -14,7 +14,7 @@ with open('input.txt', mode='r') as f:
 def find_marker(m_len, stream):
     for i in range(m_len, len(stream) + 1):
         sub = stream[i-m_len:i]
-        if len(sub) == len(set(sub)):
+        if len(set(sub)) == m_len:
             break
     return i
     
