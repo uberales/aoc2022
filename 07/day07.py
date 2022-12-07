@@ -53,21 +53,15 @@ for cmd in commands:
             else:
                 filesystem[current_path].append(file)
     
-dir_tree = {root: None}
-for d in filesystem:
-    d_up = cd_up(d)
-    dir_tree[d] = d_up
-
 dir_sizes = {d: 0 for d in filesystem}
 
 for d in filesystem:
     files = filesystem[d]
     for f in files:
         dir_from = d
-        while dir_tree[dir_from] is not None:
+        while dir_from is not None:
             dir_sizes[dir_from] += f[0]
-            dir_from = dir_tree[dir_from]
-        dir_sizes[dir_from] += f[0]
+            dir_from = cd_up(dir_from)
 
 sum_dirs = sum([ds for _, ds in dir_sizes.items() if ds <= 100000])
 
