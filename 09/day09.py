@@ -7,6 +7,7 @@ Created on Fri Dec  9 15:08:21 2022
 """
 
 import numpy as np
+import matplotlib.pyplot as plt
 
 with open('input.txt', 'r') as f:
     data = [l.strip().split(' ') for l in f.readlines()]
@@ -31,7 +32,6 @@ def follow(head, tail):
     
     return r, c
 
-
 head = (0, 0)
 tail = (0, 0)
 
@@ -48,7 +48,7 @@ for move in data:
 print(len(tail_history))
 
 # part 2
-rope = [(0, 0) for _ in range(10)]
+rope = [(0, 0)] * 10
 
 tail_history = set()
 tail_history.add(rope[-1])
@@ -63,4 +63,18 @@ for move in data:
             
 print(len(tail_history))
 
-            
+# visualisation
+
+tail = sorted(tail_history)
+tail_r = [t[0] for t in tail]
+tail_c = [t[1] for t in tail]
+
+fig, ax = plt.subplots()
+ax.scatter(tail_c, tail_r, s=1)
+ax.set_xlabel('column')
+ax.set_ylabel('row')
+ax.set_aspect('equal')
+ax.set_title('Tail location')
+plt.savefig('tail.png', bbox_inches='tight')
+plt.show()
+plt.close()
