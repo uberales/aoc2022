@@ -41,7 +41,7 @@ for r in range(n_r):
     for i, m in enumerate(monkeys):
         for item in m['items']:
             activity[i] += 1
-            w = eval(m['eval'].replace('old', '{}'.format(item))) // 3
+            w = eval(m['eval'].replace('old', str(item))) // 3
             if w % m['mod'] == 0:
                 monkeys[m['t']]['items'].append(w)
             else:
@@ -66,11 +66,11 @@ for r in range(n_r):
     for i, m in enumerate(monkeys):
         for item in m['items']:
             activity[i] += 1
-            w = eval(m['eval'].replace('old', '{}'.format(item)))
+            w = eval(m['eval'].replace('old', str(item))) % p_mod
             if w % m['mod'] == 0:
-                monkeys[m['t']]['items'].append(w % p_mod)
+                monkeys[m['t']]['items'].append(w)
             else:
-                monkeys[m['f']]['items'].append(w % p_mod)
+                monkeys[m['f']]['items'].append(w)
         m['items'] = []
         
 activity.sort(reverse=True)
