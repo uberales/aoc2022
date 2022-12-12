@@ -13,12 +13,8 @@ with open('input.txt', 'r') as f:
     
 # part 1
 def get_letter(grid, letter):
-    coords = []
-    for r, row in enumerate(grid):
-        for c, let in enumerate(row):
-            if let == letter:
-                coords.append((r, c))
-    return coords
+    idx = np.where(grid == letter)
+    return list(zip(*idx))
 
 coord_S = get_letter(grid, 'S')[0]
 coord_E = get_letter(grid, 'E')[0]
