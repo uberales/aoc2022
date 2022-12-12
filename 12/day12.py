@@ -41,7 +41,7 @@ def get_next(grid, coords):
 def shortest(grid, start, end):
     
     dist_grid = np.empty(np.shape(grid), dtype=int)
-    dist_grid[:] = 1 + len(grid)*len(grid[0])
+    dist_grid[:] = -1
     dist_grid[start] = 0
     
     queue = [start]
@@ -51,7 +51,7 @@ def shortest(grid, start, end):
         neighbors = get_next(grid, coords)
         for n in neighbors:
             min_l = dist_grid[n]
-            if np.isnan(min_l) or min_l > dist_grid[coords] + 1:
+            if min_l < 0 or min_l > dist_grid[coords] + 1:
                 dist_grid[n] = dist_grid[coords] + 1
                 queue.append(n)
                 
@@ -64,4 +64,4 @@ print(shortest(grid, coord_S, coord_E))
 coord_a = get_letter(grid, 'a')
 dist_a = [shortest(grid, c, coord_E) for c in coord_a]
 
-print(min(dist_a))
+print(min([d for d in dist_a if d > 0]))
