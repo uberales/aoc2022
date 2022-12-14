@@ -109,14 +109,13 @@ while True:
         if grain_next is None and grain == origin:
             filled = True
             grain_field[grain] = 'o'
-            n_grains += 1
             break
         elif grain_next is None:
             grain_field[grain] = 'o'
             break
         grain = grain_next
+    n_grains += 1
     if filled:
         break        
-    n_grains += 1
         
 print(n_grains)
