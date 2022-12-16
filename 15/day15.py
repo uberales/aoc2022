@@ -49,6 +49,10 @@ not_possible = not_possible.difference(beacons)
 print(len(not_possible))
 
 # part 2
+"""
+I am obviously stupid, however, this works only if the point surroundings are 
+covered by at least two beacons. Fortunately, I got a proper input.
+"""
 
 def in_any(sensors, pt):
     for s in sensors:
