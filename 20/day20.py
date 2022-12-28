@@ -8,12 +8,8 @@ Created on Tue Dec 20 09:30:47 2022
 
 with open('input.txt', 'r') as f:
     numbers = [int(l.strip()) for l in f.readlines()]
-    
-def print_nodes(first):    
-    temp = first
-    for i in range(len(numbers)):
-        print(temp)
-        temp = temp.next
+
+# part 1
 
 def print_simple(first):   
     temp = first
@@ -22,15 +18,7 @@ def print_simple(first):
         s += '{} '.format(temp.n)
         temp = temp.next
     print(s)
-    
-def print_reverse(first):   
-    temp = first
-    s = ''
-    for i in range(len(numbers)):
-        s += '{} '.format(temp.n)
-        temp = temp.prev
-    print(s)
-    
+        
 class Node:
     def __init__(self, n, i):
         self.n = n
@@ -113,29 +101,23 @@ def get_nodes(numbers, mul = 1):
 
 first, zero, nodes = get_nodes(numbers)
     
-# print_simple(zero)
-print()
 for i, node in enumerate(nodes):
     node.shuffle(mod=len(numbers))
-    # print_simple(zero)
     
 a = zero.get_by_offset(offset=1000).n
 b = zero.get_by_offset(offset=2000).n
 c = zero.get_by_offset(offset=3000).n
  
 print(a, b, c, '=>', a + b + c)
-print()
+
+# part 2
 
 first, zero, nodes = get_nodes(numbers, mul = 811589153)
-# print_simple(zero)
 mod = len(numbers)
 
-print()
 for it in range(10):
     for i, node in enumerate(nodes):
         node.shuffle(mod = mod)
-    print(it+1)
-    # print_simple(zero)
     
 a = zero.get_by_offset(offset=1000).n
 b = zero.get_by_offset(offset=2000).n
