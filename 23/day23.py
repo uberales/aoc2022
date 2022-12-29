@@ -8,17 +8,20 @@ Created on Thu Dec 29 15:30:10 2022
 
 import copy
 
+def f2e(field):
+    elves = set()
+    for r in range(len(field)):
+        for c in range(len(field[r])):
+            if field[r][c] == '#':
+                elves.add((r, c))
+    return elves
+
 with open('input.txt', 'r') as f:
     field = [list(l.strip()) for l in f.readlines()]
 
-# part 1
- 
-elves = set()
+elves = f2e(field)
 
-for r in range(len(field)):
-    for c in range(len(field[r])):
-        if field[r][c] == '#':
-            elves.add((r, c))
+# part 1
 
 dir_8 = [(ns, ew) for ns in (-1, 0, 1) for ew in (-1, 0, 1)  if (ns, ew) != (0, 0) ]
 name_8 = [ns + ew for ns in ('N', '', 'S') for ew in ('W', '', 'E')  if len(ns + ew) > 0]
